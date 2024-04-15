@@ -147,140 +147,140 @@ S.UI = (function () {
         current;
 
     // overlay.classList.remove('overlay--visible');
-    sequence = typeof(value) === 'object' ? value : sequence.concat(value.split('|'));
-    // input.value = '';
-    // checkInputWidth();
+顺序=typeof(价值)==='object'？值：序列。concat(价值。分离('|'));
+    //input.value="；
+    //checkInputWidth()；
 
-    timedAction(function (index) {
-      current = sequence.shift();
-      action = getAction(current);
-      value = getValue(current);
+    timedAction(功能 (指数) {
+电流=序列。转变();
+操作=getAction(当前);
+值=getValue(当前);
 
-      switch (action) {
-        case 'countdown':
-          value = parseInt(value) || 10;
-          value = value > 0 ? value : 10;
+      开关 (行动) {
+        案例 '倒计时':
+值=parseInt(价值)||10;
+value=value>0？值：10;
 
-          timedAction(function (index) {
-            if (index === 0) {
-              if (sequence.length === 0) {
-                S.Shape.switchShape(S.ShapeBuilder.letter(''));
-              } else {
-                performAction(sequence);
+          timedAction(功能 (指数) {
+            如果 (索引===0) {
+              如果 (顺序。长度===0) {
+S。形状.switchShape(S。ShapeBuilder.信(''));
+              } 其他 {
+                performAction(顺序);
               }
-            } else {
-              S.Shape.switchShape(S.ShapeBuilder.letter(index), true);
+            } 其他 {
+S。形状.switchShape(S。ShapeBuilder.信(指数),正确);
             }
-          }, 1000, value, true);
-          break;
+          },1000，值，正确);
+          打破;
 
-        case 'rectangle':
-          value = value && value.split('x');
-          value = (value && value.length === 2) ? value : [maxShapeSize, maxShapeSize / 2];
+        案例 '矩形':
+value=value&&value。分离('x');
+值=(值&&value。长度===2)？值：[maxShapeSize，maxShapeSize/2];
 
-          S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize, parseInt(value[0])), Math.min(maxShapeSize, parseInt(value[1]))));
-          break;
+S。形状.switchShape(S。ShapeBuilder.矩形(数学。最小值(maxShapeSize，parseInt(价值[0]))，数学。最小值(maxShapeSize，parseInt(价值[1]))));
+          打破;
 
-        case 'circle':
-          value = parseInt(value) || maxShapeSize;
-          value = Math.min(value, maxShapeSize);
-          S.Shape.switchShape(S.ShapeBuilder.circle(value));
-          break;
+        案例 '圆形':
+值=parseInt(价值)||maxShapeSize；
+值=数学最小值(值，maxShapeSize);
+S。形状.switchShape(S。ShapeBuilder.圆(价值));
+          打破;
 
-        case 'time':
-          var t = formatTime(new Date());
+        案例 '时间':
+          var t=formatTime(新的日期());
 
-          if (sequence.length > 0) {
-            S.Shape.switchShape(S.ShapeBuilder.letter(t));
-          } else {
-            timedAction(function () {
-              t = formatTime(new Date());
-              if (t !== time) {
-                time = t;
-                S.Shape.switchShape(S.ShapeBuilder.letter(time));
+          如果 (顺序。长度>0) {
+S。形状.switchShape(S。ShapeBuilder.信(t));
+          } 其他 {
+            timedAction(功能 () {
+T=formatTime(新的日期());
+              如果 (T！==时间) {
+时间=t；
+S。形状.switchShape(S。ShapeBuilder.信(时间));
               }
-            }, 1000);
+            },1000);
           }
-          break;
+          打破;
 
-        default:
-          S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? 'What?' : current));
+        默认:
+S。形状.switchShape(S。ShapeBuilder.信(当前[0]===cmd？“什么？”：当前));
       }
-    }, 2500, sequence.length);
+    },3500，序列。长度);
   }
 
-  function checkInputWidth(e) {
-    if (input.value.length > 18) {
-      ui.classList.add('ui--wide');
-    } else {
-      ui.classList.remove('ui--wide');
+  功能 checkInputWidth(e) {
+    如果 (输入。价值.长度>18) {
+用户界面。classList.添加('ui-wide');
+    } 其他 {
+用户界面。classList.移除('ui-wide');
     }
 
-    if (firstAction && input.value.length > 0) {
-      ui.classList.add('ui--enter');
-    } else {
-      ui.classList.remove('ui--enter');
+    如果 (firstAction&&input。价值.长度>0) {
+用户界面。classList.添加('ui-enter');
+    } 其他 {
+用户界面。classList.移除('ui-enter');
     }
   }
 
-  function bindEvents() {
-    document.body.addEventListener('keydown', function (e) {
-      input.focus();
+  功能 bindEvents() {
+文件。身体.addEventListener('按下键',功能 (e) {
+输入。集中();
 
-      if (e.keyCode === 13) {
-        firstAction = false;
-        reset();
-        performAction(input.value);
+      如果 (e。键码===13) {
+firstAction=假的;
+        重置();
+        performAction(输入。价值);
       }
     });
 
-    // input.addEventListener('input', checkInputWidth);
-    // input.addEventListener('change', checkInputWidth);
-    // input.addEventListener('focus', checkInputWidth);
+    //input.addEventListener('input'，checkInputWidth)；
+    //input.addEventListener('change'，checkInputWidth)；
+    //input.addEventListener('focus'，checkInputWidth)；
 
-    // help.addEventListener('click', function (e) {
-    //   overlay.classList.toggle('overlay--visible');
-    //   overlay.classList.contains('overlay--visible') && reset(true);
+    //help.addEventListener('click'，函数(e){
+    //overlay.classList.toggle('overlay--visible')；
+    //覆盖。classList。包含('overlay--visible')&&reset(true)；
     // });
 
-    // commands.addEventListener('click', function (e) {
-    //   var el,
-    //       info,
-    //       demo,
-    //       tab,
-    //       active,
-    //       url;
+    //commands.addEventListener('click'，函数(e){
+    //var el，
+    //info，
+    //demo，
+    //制表符，
+    //活动，
+    //url；
     //
-    //   if (e.target.classList.contains('commands-item')) {
-    //     el = e.target;
-    //   } else {
-    //     el = e.target.parentNode.classList.contains('commands-item') ? e.target.parentNode : e.target.parentNode.parentNode;
+    //如果(e.目标。classList.包含('commands-item')){
+    //el=e.target；
+    //}else{
+    //el=e。目标。parentNode.classList.包含('commands-item')？e.target.parentNode:e.target.parentNode.parentNode；
     //   }
     //
-    //   info = el && el.querySelector('.commands-item-info');
-    //   demo = el && info.getAttribute('data-demo');
-    //   url = el && info.getAttribute('data-url');
+    //info=el&&el.querySelector('.commands-item-info')；
+    //demo=el&&info.getAttribute('data-demo')；
+    //url=el&&info.getAttribute('data-url')；
     //
-    //   if (info) {
-    //     overlay.classList.remove('overlay--visible');
+    //if(info){
+    //overlay.classList.remove('overlay--visible')；
     //
-    //     if (demo) {
-    //       input.value = demo;
+    //if(演示){
+    //input.value=demo；
     //
-    //       if (isTouch) {
-    //         reset();
-    //         performAction(input.value);
-    //       } else {
-    //         input.focus();
+    //if(isTouch){
+    //reset()；
+    //performAction(input.value)；
+    //}else{
+    //input.focus()；
     //       }
-    //     } else if (url) {
-    //       //window.location = url;
+    //}else if(url){
+    ////window.location=url；
     //     }
     //   }
     // });
 
-    canvas.addEventListener('click', function (e) {
-      overlay.classList.remove('overlay--visible');
+帆布。addEventListener('单击',功能 (e) {
+覆盖。classList.移除('覆盖-可见');
     });
   }
 

@@ -206,7 +206,7 @@ S。形状.switchShape(S。ShapeBuilder.信(时间));
         默认:
 S。形状.switchShape(S。ShapeBuilder.信(当前[0]===cmd？“什么？”：当前));
       }
-    },3500，序列。长度);
+    },3000，序列。长度);
   }
 
   功能 checkInputWidth(e) {

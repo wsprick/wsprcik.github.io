@@ -24,7 +24,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('|#countdown 3|祝您|母亲节|快乐！|愿您的|生活如|春日|阳光|温暖|明媚|吉祥|如意|永相随|!_!');
+      S.UI.simulate('|#countdown 3|祝您|母亲节|快乐！|愿您的|生活如|春日|阳光！|温暖|明媚！|吉祥|如意！|永相随|!_!');
     }
 
     S.Drawing.loop(function () {
